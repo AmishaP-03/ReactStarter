@@ -14,7 +14,7 @@ import {
 function App() {
   // React hooks must be called only inside the component function or other react hooks, that too at the top level and not inside any nested code.
   // selectedValue is always recreated whenever setSelectedValue is called.
-  const [selectedValue, setSelectedValue] = useState('components');
+  const [selectedValue, setSelectedValue] = useState();
 
   function handleSelect(selection) {
     // Upon calling setSelectedValue here, React internally schedules the state update (& re-execute the App component function).
@@ -77,18 +77,22 @@ function App() {
           {/* Get updated values here, since App component is re-executed after each update */}
           {/* {selectedValue} */}
 
-          <div id="tab-content">
-            <h3>{EXAMPLES[selectedValue].title}</h3>
-            <p>{EXAMPLES[selectedValue].description}</p>
+          {selectedValue ? (
+            <div id="tab-content">
+              <h3>{EXAMPLES[selectedValue].title}</h3>
+              <p>{EXAMPLES[selectedValue].description}</p>
 
-            {/* The <pre> tag defines preformatted text.
-            Text in a <pre> element is displayed in a fixed-width font, and the text preserves both spaces and line breaks.
-            The text will be displayed exactly as written in the HTML source code. */}
-            <pre>
-              {/* The <code> tag is used to define a piece of computer code. The content inside is displayed in the browser's default monospace font. */}
-              <code>{EXAMPLES[selectedValue].code}</code>
-            </pre>
-          </div>
+              {/* The <pre> tag defines preformatted text.
+                      Text in a <pre> element is displayed in a fixed-width font, and the text preserves both spaces and line breaks.
+                      The text will be displayed exactly as written in the HTML source code. */}
+              <pre>
+                {/* The <code> tag is used to define a piece of computer code. The content inside is displayed in the browser's default monospace font. */}
+                <code>{EXAMPLES[selectedValue].code}</code>
+              </pre>
+            </div>
+          ) : (
+            <p>Please select a topic</p>
+          )}
         </section>
       </main>
     </div>
