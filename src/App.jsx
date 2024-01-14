@@ -77,7 +77,7 @@ function App() {
           {/* Get updated values here, since App component is re-executed after each update */}
           {/* {selectedValue} */}
 
-          {selectedValue ? (
+          {selectedValue && (
             <div id="tab-content">
               <h3>{EXAMPLES[selectedValue].title}</h3>
               <p>{EXAMPLES[selectedValue].description}</p>
@@ -90,7 +90,9 @@ function App() {
                 <code>{EXAMPLES[selectedValue].code}</code>
               </pre>
             </div>
-          ) : (
+          )}
+
+          {!selectedValue && (
             <p>Please select a topic</p>
           )}
         </section>
