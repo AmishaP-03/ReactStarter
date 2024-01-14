@@ -8,6 +8,9 @@ import {
 } from './data.js';
 
 function App() {
+  function handleSelect() {
+    console.log('Selected');
+  }
   return (
     <div>
       {/* JSX allows us to use custom components as HTML elements */}
@@ -44,10 +47,10 @@ function App() {
           {/* Helps us create a list of buttons */}
           <menu>
             {/* Similar to how we use a regular button */}
-            <TabButton>Components</TabButton>
-            <TabButton>JSX</TabButton>
-            <TabButton>Props</TabButton>
-            <TabButton>State</TabButton>
+            <TabButton onSelect={handleSelect}>Components</TabButton>
+            <TabButton onSelect={handleSelect}>JSX</TabButton>
+            <TabButton onSelect={handleSelect}>Props</TabButton>
+            <TabButton onSelect={handleSelect}>State</TabButton>
           </menu>
         </section>
       </main>
