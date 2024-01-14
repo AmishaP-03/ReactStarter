@@ -1,3 +1,6 @@
+import { 
+  useState // React hook
+} from 'react';
 import CoreConcept from './components/CoreConcept.jsx';
 import Header from './components/Header/Header.jsx';
 import TabButton from './components/TabButton.jsx';
@@ -8,8 +11,16 @@ import {
 } from './data.js';
 
 function App() {
+  // React hooks must be called only inside the component function or other react hooks, that too at the top level and not inside any nested code.
+  // selectedValue is always recreated whenever setSelectedValue is called.
+  const [selectedValue, setSelectedValue] = useState('Please click on a button');
+
   function handleSelect(selection) {
-    console.log(selection);
+    // Upon calling setSelectedValue here, React internally schedules the state update (& re-execute the App component function).
+    // This will happen only once the current function handleSelect finishes executing. Thus, upon logging selectedValue just after setSelectedValue function call,
+    // we will still get the old values and not the updated ones.
+    setSelectedValue(selection);
+    console.log(selectedValue); // get old values only
   }
   return (
     <div>
@@ -61,6 +72,8 @@ function App() {
             <TabButton onSelect={() => handleSelect('props')}>Props</TabButton>
             <TabButton onSelect={() => handleSelect('state')}>State</TabButton>
           </menu>
+          {/* Get updated values here, since App component is re-executed after each update */}
+          {selectedValue}
         </section>
       </main>
     </div>
