@@ -8,8 +8,8 @@ import {
 } from './data.js';
 
 function App() {
-  function handleSelect() {
-    console.log('Selected');
+  function handleSelect(selection) {
+    console.log(selection);
   }
   return (
     <div>
@@ -47,10 +47,19 @@ function App() {
           {/* Helps us create a list of buttons */}
           <menu>
             {/* Similar to how we use a regular button */}
-            <TabButton onSelect={handleSelect}>Components</TabButton>
-            <TabButton onSelect={handleSelect}>JSX</TabButton>
-            <TabButton onSelect={handleSelect}>Props</TabButton>
-            <TabButton onSelect={handleSelect}>State</TabButton>
+
+            {/* We cannot pass parameters directly to handleSelect function here since that would mean that we are invoking the function when code executes for the first time itself.
+            Whereas our aim is to trigger it only when a button is clicked. Hence we want React to call the function upon button click.
+
+            In order to pass parameters to the handleSelect function:
+            1. Set the value of onSelect prop to an arrow function instead (or use anonymous function like: <TabButton onSelect={function(){handleSelect}}>Components</TabButton>)
+            2. Pass params to handleSelect function
+
+            This will make sure that upon button click, React will invoke the set arrow function, which will in turn invoke the handleSelect function with parameters. */}
+            <TabButton onSelect={() => handleSelect('components')}>Components</TabButton>
+            <TabButton onSelect={() => handleSelect('jsx')}>JSX</TabButton>
+            <TabButton onSelect={() => handleSelect('props')}>Props</TabButton>
+            <TabButton onSelect={() => handleSelect('state')}>State</TabButton>
           </menu>
         </section>
       </main>
