@@ -6,6 +6,7 @@ import {
     EXAMPLES
 } from '../data.js';
 import TabButton from './TabButton.jsx';
+import Section from './Section.jsx';
 
 
 export default function Examples() {
@@ -22,8 +23,7 @@ export default function Examples() {
     }
 
     return (
-        <section id="examples">
-        <h2>Examples</h2>
+        <Section title="Examples" id="examples">
         {/* Helps us create a list of buttons */}
         <menu>
           {/* Similar to how we use a regular button */}
@@ -40,6 +40,20 @@ export default function Examples() {
           <TabButton isSelected={selectedValue === 'jsx'} onSelect={() => handleSelect('jsx')}>JSX</TabButton>
           <TabButton isSelected={selectedValue === 'props'} onSelect={() => handleSelect('props')}>Props</TabButton>
           <TabButton isSelected={selectedValue === 'state'} onSelect={() => handleSelect('state')}>State</TabButton>
+
+          {/* Using props wrapping to even simplify the above procees. Need not create a new attribute onSelect. We can directly defined onClick here and pass it by wrapping to the child component.
+                <TabButton isSelected={selectedValue === 'components'} onClick={() => handleSelect('components')}>Components</TabButton>
+
+                In TabButton component:
+
+                export default function TabButton({isSelected, children, ...props}) {
+                    return (
+                        <li>
+                            <button className={isSelected ? 'active' : undefined} {...props}>{children}</button>
+                        </li>
+                    );
+                }
+          */}
         </menu>
 
         {/* Get updated values here, since App component is re-executed after each update */}
@@ -63,6 +77,6 @@ export default function Examples() {
         {!selectedValue && (
           <p>Please select a topic</p>
         )}
-      </section>
+      </Section>
     );
 }
