@@ -83,7 +83,7 @@ export default function Examples() {
     <Section title="Examples" id="examples">
         {/* JSX code can be used as values, the only thing is that whenever it is, we should have one root element only (<></>), not multiple sibling elements */}
         {/* in-built components are passed in double quotes whereas custom components are passed as dynamic values, buttonContainer = {Section}. They is because they are basically user defined variables from which the value is supposed to be picked up. */}
-        <Tabs butttonContainer="menu" buttons={<>
+        <Tabs buttons={<>
             <TabButton isSelected={selectedValue === 'components'} onSelect={() => handleSelect('components')}>Components</TabButton>
             <TabButton isSelected={selectedValue === 'jsx'} onSelect={() => handleSelect('jsx')}>JSX</TabButton>
             <TabButton isSelected={selectedValue === 'props'} onSelect={() => handleSelect('props')}>Props</TabButton>

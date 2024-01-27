@@ -1,4 +1,4 @@
-export default function Tabs({children, buttons, butttonContainer}) {
+export default function Tabs({children, buttons, butttonContainer="menu"}) {
     // Creating a custom component that contains the value present in buttonContainer
     const ButtonContainer = butttonContainer
     return (
